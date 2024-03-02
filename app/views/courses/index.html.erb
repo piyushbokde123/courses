@@ -1,0 +1,22 @@
+<h1>Cources</h1>
+
+<% if current_user.present? %>
+	<table>
+	  <tr>
+	    <th><%= link_to "Course Name"%> </th>
+	    <th><%= link_to "Created By"%> </th>
+	  </tr>
+	<% @courses.each do |course| %>
+  <tr>
+    <td><%= course.name %></td>
+    <td><%= course.user_id %></td><td>
+  </tr>
+  <% end %>
+  <%= button_to "new course", new_course_path(current_user), method: "get", class: "my_class"%>
+	<%= button_to "log out", destroy_user_session_path, method: "delete", class: "my_class"%>
+	<%= button_to "users list", users_path, method: "get", class: "my_class"%>
+  </table>
+
+<%else%>
+  <%= button_to "sign up", new_user_registration_path, method: "get", class: "my_class"%> | <%= button_to "log in", new_user_session_path, class: "my_class"%>
+<%end%>
